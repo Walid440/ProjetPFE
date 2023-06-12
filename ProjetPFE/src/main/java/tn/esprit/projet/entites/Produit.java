@@ -1,10 +1,8 @@
 package tn.esprit.projet.entites;
 
-
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,23 +22,26 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client implements Serializable {
+public class Produit implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column(length = 25)
-	private String nom;
+	private String nomProd;
 	@Column(length = 50)
-	private String prenom;
+	private String Marque;
+	@Column(length = 50)
+	private String Modele;
 	@Column(length = 100)
-	private String adresse;
+	private String prix;
+ 
 	@Column(length = 100)
-	private String Email;
-	@Column(length = 9)
-	private String telephone;
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "com")
-	   @JsonIgnore
-	 private List<Commande> listCommande;
-    
+	private int Annee;
+	
+	
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "Produit")
+//	    @JsonIgnore
+	    private List<Commande> listCommand;
+   
 }

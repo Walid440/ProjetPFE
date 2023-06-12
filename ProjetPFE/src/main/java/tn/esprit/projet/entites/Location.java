@@ -1,10 +1,8 @@
 package tn.esprit.projet.entites;
 
-
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,32 +13,39 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
- 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client implements Serializable {
-
+public class Location implements Serializable {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private long idLoc;
 	@Column(length = 25)
-	private String nom;
+	private Date DateDebut;
 	@Column(length = 50)
-	private String prenom;
+	private Date DateFin;
 	@Column(length = 100)
-	private String adresse;
-	@Column(length = 100)
-	private String Email;
-	@Column(length = 9)
-	private String telephone;
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "com")
-	   @JsonIgnore
-	 private List<Commande> listCommande;
+	private Date HeureDebut;
+    @Column(length = 100)
+	private Date HeureFin;
+    @Column(length = 50)
+	private String Lieu;
+    @Column(length = 50)
+	private String prix;
     
+    
+    private Status status;
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "Produit")
+	 //   @JsonIgnore
+	    private List<Commande> listCommand;
+
 }
