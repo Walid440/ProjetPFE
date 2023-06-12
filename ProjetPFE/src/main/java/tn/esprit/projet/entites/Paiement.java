@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
  
@@ -31,6 +32,6 @@ public class Paiement implements Serializable {
 	private String payementDate;
 	
  
-	/*  @ManyToMany
-	    private List<Commande> com;*/
+ @ManyToMany
+	    private List<Commande> com;
 }

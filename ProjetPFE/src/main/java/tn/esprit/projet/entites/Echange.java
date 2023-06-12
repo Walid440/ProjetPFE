@@ -43,9 +43,7 @@ public class Echange implements Serializable {
     @ManyToOne
     private Client client;
     
-    private StatusVoiture statusVoi;
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "Produit")
-	  
-	    private List<Commande> listCommand;
+    private StatusVoiture statusEchange;
+	 
 
 }

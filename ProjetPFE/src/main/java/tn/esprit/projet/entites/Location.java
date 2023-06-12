@@ -43,9 +43,7 @@ public class Location implements Serializable {
 	private String prix;
     
     
-    private Status status;
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "Produit")
-	 //   @JsonIgnore
-	    private List<Commande> listCommand;
+    private Status statusLoc;
+	 
 
 }

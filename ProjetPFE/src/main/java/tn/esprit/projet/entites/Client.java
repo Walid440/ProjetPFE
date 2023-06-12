@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -24,10 +26,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(value= JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Client implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(length = 25)
 	private String nom;
@@ -39,7 +43,7 @@ public class Client implements Serializable {
 	private String Email;
 	@Column(length = 9)
 	private String telephone;
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "com")
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 	   @JsonIgnore
 	 private List<Commande> listCommande;
     

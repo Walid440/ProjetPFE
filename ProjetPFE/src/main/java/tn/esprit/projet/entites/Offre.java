@@ -41,8 +41,10 @@ public class Offre implements Serializable {
 	@OneToOne
 	private Echange echange;
 	
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "Produit")
+	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "offre")
 	  //  @JsonIgnore
-	    private List<Commande> listCommand;
+	    private List<Produit> listProd;
+	  
+	  
    
 }

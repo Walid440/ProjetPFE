@@ -1,7 +1,8 @@
-package tn.esprit.projet.repositories;
+ package tn.esprit.projet.repositories;
 
-import tn.esprit.projet.entites.Commande;
- 
+import tn.esprit.projet.entites.Client;
+import tn.esprit.projet.entites.LivraisonProd;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public interface LivraisonProd extends JpaRepository<LivraisonProd, Long> {
+public interface LivraisonProdRepository extends JpaRepository<LivraisonProd, Long> {
 
    /* @Transactional
     @Modifying

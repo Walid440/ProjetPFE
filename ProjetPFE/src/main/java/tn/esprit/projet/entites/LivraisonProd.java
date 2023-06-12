@@ -33,8 +33,8 @@ public class LivraisonProd implements Serializable {
 	@Column(length = 100)
 	private Date date;
  
-    @ManyToMany(mappedBy="LivraisonProd",fetch=FetchType.LAZY)
+    @ManyToMany(mappedBy="LivProd",fetch=FetchType.LAZY)
     //@JsonIgnore
-    private Set<Commande> commande;
+    private List<Commande> ListCom;
    
 }

@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,8 +42,10 @@ public class Produit implements Serializable {
 	private int Annee;
 	
 	
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "Produit")
+	  @ManyToMany
 //	    @JsonIgnore
 	    private List<Commande> listCommand;
+	  @ManyToOne
+	    private Offre offre;
    
 }

@@ -48,9 +48,7 @@ public class Vente implements Serializable {
     @ManyToOne
     private Client client;
     
-    private StatusVoiture statusVoi;
-	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "Produit")
-	  //  @JsonIgnore
-	    private List<Commande> listCommand;
+    private StatusVoiture statusVente;
+	 
 
 }
