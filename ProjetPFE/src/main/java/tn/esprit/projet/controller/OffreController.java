@@ -18,54 +18,56 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.projet.entites.Client;
+import tn.esprit.projet.entites.Offre;
 import tn.esprit.projet.services.InterClient;
+import tn.esprit.projet.services.InterOffre;
 
  
 @RestController
 @CrossOrigin("*")
-public class ClientController {
+public class OffreController {
   /*  @Autowired
     private JavaMailSender javaMailSender;*/
     @Autowired
-    private InterClient ClientService;
+    private InterOffre OffreService;
    
     
-    @PutMapping(value = "/UpdateClient/{idF}")
+    @PutMapping(value = "/UpdateOffre/{idF}")
     @ResponseBody
-    public Client Update (@RequestBody Client R, @PathVariable Long idF)
+    public Offre Update (@RequestBody Offre R, @PathVariable Long idF)
     {//ReservationService.UpdateEvent(10);
     
-        return ClientService.UpdateClient(R, idF) ;
+        return OffreService.UpdateOffre(R, idF) ;
     }
     
     
-	@RequestMapping("/AllClient")
+	@RequestMapping("/AllOffre")
 	@ResponseBody
-	public  List<Client> getAllClient()
+	public  List<Offre> getAllOffre()
 	{
 		   
-    	List<Client> client=ClientService.getAll();
-		return   client ;	
+    	List<Offre> offre=OffreService.getAll();
+		return   offre ;	
 	}
 	@CrossOrigin("http://localhost:8090")
-    @PostMapping(value = "/CreateClient")
+    @PostMapping(value = "/CreateOffre")
     @ResponseBody
-    public Client Create (@RequestBody Client X)
+    public Offre Create (@RequestBody Offre X)
     {
-        return ClientService.AddClient(X);
+        return OffreService.AddOffre(X);
     }
-	 @GetMapping("/getIdClient/{id}")
+	 @GetMapping("/getIdOffre/{id}")
 	 @ResponseBody
-	 public Optional<Client> getClientById(@PathVariable(value = "id") long Id)
+	 public Optional<Offre> getOffreById(@PathVariable(value = "id") long Id)
 	         
 	 {
-	     return ClientService.getClientById(Id);
+	     return OffreService.getOffreById(Id);
 	 }
 	    @CrossOrigin("*")
-	    @DeleteMapping(value = "/DeleteClt/{idR}")
+	    @DeleteMapping(value = "/DeleteOffre/{idR}")
 	    @ResponseBody
 	    public void Remove (@PathVariable long idR)
 	    {
-	        ClientService.DeleteClient(idR);
+	    	OffreService.DeleteOffre(idR);
 	    }
 }

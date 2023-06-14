@@ -32,12 +32,7 @@ public class Commande implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(length = 25)
-	private String username;
-	@Column(length = 1000)
-	private String password;
-	private String role;
-	private String mail;
+	 
 	 
     @ManyToOne
     private Client client;

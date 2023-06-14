@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import tn.esprit.projet.entites.Client;
+
+ 
 public interface InterClient  {
 	
 	
@@ -12,5 +14,11 @@ public interface InterClient  {
 
 	Optional<Client> getClientById(long id);
 
-	public Client AddPassengers(Client listP, Long idR, Long ferryId);
+	Client AddClient(Client C);
+
+	void DeleteClient(Long id);
+
+	Client UpdateClient(Client R, Long Id);
+
+	 
 }

@@ -15,24 +15,44 @@ public class ImpClient implements InterClient {
 	 @Autowired
 	    private ClientRepository ClientRep;
 
-	@Override
- public List<Client> getAll() {
-		// TODO Auto-generated method stub
-		 
-		return (List<Client>)ClientRep.findAll();
-	}
-
-	@Override
-	public Optional<Client> getClientById(long id) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
-	}
-
-	@Override
-	public Client AddPassengers(Client listP, Long idR, Long ferryId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	  @Override
+	    public List<Client> getAll() {
+	        return (List<Client>) ClientRep.findAll();
+	    }
 	 
+ 
+ 
+	@Override
+	public Client AddClient(Client C) {
+		// TODO Auto-generated method stub
+		Client client=ClientRep.save(C);
+		return client;
+	}
+	  @Override
+	    public Optional<Client> getClientById( long id)
+	    {
+	         
+	        Optional<Client> clt = ClientRep.findById( id);
+	                
+	        return clt;
+	    }
+	  @Override
+	    public void DeleteClient(Long id) {
+	        ClientRep.deleteById(id);
+	    }
+	  @Override
+	    public Client UpdateClient(Client R,Long Id) {
+	  
+	        Client Res= ClientRep.findById(Id).orElse(null);
+	    
+	       Res.setNom(R.getNom());
+	       Res.setPrenom(R.getPrenom());
+	       Res.setAdresse(R.getAdresse());
+	       Res.setTelephone(R.getTelephone());
+	       Res.setEmail(R.getEmail());
+ 	    	 
+	       ClientRep.save(Res);
+	        return null;
+	    }
 
 }

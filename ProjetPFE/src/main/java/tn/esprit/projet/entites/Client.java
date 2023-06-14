@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
  
@@ -23,28 +24,119 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonInclude(value= JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown=true)
+@Table(name = "Client")
+ @Data
 public class Client implements Serializable {
 
 	@Id
-	   @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	@Column(length = 25)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	 @Column(name = "Nom")
 	private String nom;
-	@Column(length = 50)
+	 @Column(name = "Prenom")
 	private String prenom;
-	@Column(length = 100)
+	 @Column(name = "Adresse",length = 100)
 	private String adresse;
-	@Column(length = 100)
+	 @Column(name = "Email",length = 25)
 	private String Email;
-	@Column(length = 9)
+	 @Column(name = "Telephone",length = 25)
 	private String telephone;
 	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
-	   @JsonIgnore
-	 private List<Commande> listCommande;
-    
+ 	 private List<Commande> listCommande;
+	  
+	  
+	public Client() {
+		super();
+	}
+
+
+	public Client(Long id, String nom, String prenom, String adresse, String email, String telephone,
+			List<Commande> listCommande) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adresse = adresse;
+		Email = email;
+		this.telephone = telephone;
+		this.listCommande = listCommande;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+
+	public String getEmail() {
+		return Email;
+	}
+
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+
+	public List<Commande> getListCommande() {
+		return listCommande;
+	}
+
+
+	public void setListCommande(List<Commande> listCommande) {
+		this.listCommande = listCommande;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", Email=" + Email
+				+ ", telephone=" + telephone + ", listCommande=" + listCommande + "]";
+	}
+   
 }

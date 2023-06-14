@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -44,7 +45,8 @@ public class Vente implements Serializable {
    	private String StatutVente;
     @Column(length = 50)
    	private String prix;
-    
+    @OneToOne
+	private Vente vente;
     @ManyToOne
     private Client client;
     

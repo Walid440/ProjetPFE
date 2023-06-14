@@ -15,7 +15,6 @@ import java.util.List;
 
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
-
    /* @Transactional
     @Modifying
     @Query("UPDATE Ferry SET isDeleted = 1 WHERE idFerry = :id")

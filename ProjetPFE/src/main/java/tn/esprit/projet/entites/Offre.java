@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import tn.esprit.projet.entites.Vente;
-
+import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,16 +34,107 @@ public class Offre implements Serializable {
 	@Column(length = 100)
 	private String adresse;
    
+	@Nullable
 	@OneToOne
 	private Vente vente;
+	@Nullable
 	@OneToOne
 	private Location location;
+	@Nullable
 	@OneToOne
 	private Echange echange;
 	
 	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "offre")
 	  //  @JsonIgnore
 	    private List<Produit> listProd;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNomOffre() {
+		return nomOffre;
+	}
+
+	public void setNomOffre(String nomOffre) {
+		this.nomOffre = nomOffre;
+	}
+
+	public Date getDateOffre() {
+		return dateOffre;
+	}
+
+	public void setDateOffre(Date dateOffre) {
+		this.dateOffre = dateOffre;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public Vente getVente() {
+		return vente;
+	}
+
+	public void setVente(Vente vente) {
+		this.vente = vente;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public Echange getEchange() {
+		return echange;
+	}
+
+	public void setEchange(Echange echange) {
+		this.echange = echange;
+	}
+
+	public List<Produit> getListProd() {
+		return listProd;
+	}
+
+	public void setListProd(List<Produit> listProd) {
+		this.listProd = listProd;
+	}
+
+	@Override
+	public String toString() {
+		return "Offre [id=" + id + ", nomOffre=" + nomOffre + ", dateOffre=" + dateOffre + ", adresse=" + adresse
+				+ ", vente=" + vente + ", location=" + location + ", echange=" + echange + ", listProd=" + listProd
+				+ "]";
+	}
+
+	public Offre(long id, String nomOffre, Date dateOffre, String adresse, Vente vente, Location location,
+			Echange echange, List<Produit> listProd) {
+		super();
+		this.id = id;
+		this.nomOffre = nomOffre;
+		this.dateOffre = dateOffre;
+		this.adresse = adresse;
+		this.vente = vente;
+		this.location = location;
+		this.echange = echange;
+		this.listProd = listProd;
+	}
+
+	public Offre() {
+		super();
+	}
 	  
 	  
    
