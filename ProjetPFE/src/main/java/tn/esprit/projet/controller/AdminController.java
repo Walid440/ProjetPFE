@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.projet.entites.Admin;
 import tn.esprit.projet.entites.Client;
+import tn.esprit.projet.services.InterAdmin;
 import tn.esprit.projet.services.InterClient;
 
  
@@ -27,45 +29,45 @@ public class AdminController {
   /*  @Autowired
     private JavaMailSender javaMailSender;*/
     @Autowired
-    private InterClient ClientService;
+    private InterAdmin AdminService;
    
     
-    @PutMapping(value = "/UpdateClient/{idF}")
+    @PutMapping(value = "/UpdateAdmin/{idF}")
     @ResponseBody
-    public Client Update (@RequestBody Client R, @PathVariable Long idF)
+    public Admin Update (@RequestBody Admin R, @PathVariable Long idF)
     {//ReservationService.UpdateEvent(10);
     
-        return ClientService.UpdateClient(R, idF) ;
+        return AdminService.UpdateAdmin(R, idF) ;
     }
     
     
-	@RequestMapping("/AllClient")
+	@RequestMapping("/AllAdmin")
 	@ResponseBody
-	public  List<Client> getAllClient()
+	public  List<Admin> getAllAdmin()
 	{
 		   
-    	List<Client> client=ClientService.getAll();
+    	List<Admin> client=AdminService.getAll();
 		return   client ;	
 	}
 	@CrossOrigin("http://localhost:8090")
-    @PostMapping(value = "/CreateClient")
+    @PostMapping(value = "/CreateAdmin")
     @ResponseBody
-    public Client Create (@RequestBody Client X)
+    public Admin Create (@RequestBody Admin X)
     {
-        return ClientService.AddClient(X);
+        return AdminService.AddAdmin(X);
     }
-	 @GetMapping("/getIdClient/{id}")
+	 @GetMapping("/getIdAdmin/{id}")
 	 @ResponseBody
-	 public Optional<Client> getClientById(@PathVariable(value = "id") long Id)
+	 public Optional<Admin> getAdminById(@PathVariable(value = "id") long Id)
 	         
 	 {
-	     return ClientService.getClientById(Id);
+	     return AdminService.getAdminById(Id);
 	 }
 	    @CrossOrigin("*")
-	    @DeleteMapping(value = "/DeleteClt/{idR}")
+	    @DeleteMapping(value = "/DeleteAdmin/{idR}")
 	    @ResponseBody
 	    public void Remove (@PathVariable long idR)
 	    {
-	        ClientService.DeleteClient(idR);
+	    	AdminService.DeleteAdmin(idR);
 	    }
 }

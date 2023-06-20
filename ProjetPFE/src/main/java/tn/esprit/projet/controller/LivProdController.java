@@ -18,54 +18,58 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.projet.entites.Client;
+import tn.esprit.projet.entites.LivraisonProd;
+import tn.esprit.projet.entites.User;
 import tn.esprit.projet.services.InterClient;
+import tn.esprit.projet.services.InterLivProd;
+import tn.esprit.projet.services.InterUser;
 
  
 @RestController
 @CrossOrigin("*")
-public class ClientController {
+public class LivProdController {
   /*  @Autowired
     private JavaMailSender javaMailSender;*/
     @Autowired
-    private InterClient ClientService;
+    private InterLivProd LivProdService;
    
     
-    @PutMapping(value = "/UpdateClient/{idF}")
+    @PutMapping(value = "/UpdateLivProd/{idF}")
     @ResponseBody
-    public Client Update (@RequestBody Client R, @PathVariable Long idF)
+    public LivraisonProd Update (@RequestBody LivraisonProd R, @PathVariable Long idF)
     {//ReservationService.UpdateEvent(10);
     
-        return ClientService.UpdateClient(R, idF) ;
+        return LivProdService.UpdateLivraisonProd(R, idF) ;
     }
     
     
-	@RequestMapping("/AllClient")
+	@RequestMapping("/AllLivProd")
 	@ResponseBody
-	public  List<Client> getAllClient()
+	public  List<LivraisonProd> getAllClient()
 	{
 		   
-    	List<Client> client=ClientService.getAll();
-		return   client ;	
+    	List<LivraisonProd> user=LivProdService.getAll();
+		return   user ;	
 	}
 	@CrossOrigin("http://localhost:8090")
-    @PostMapping(value = "/CreateClient")
+    @PostMapping(value = "/CreateLivprod")
     @ResponseBody
-    public Client Create (@RequestBody Client X)
+    public LivraisonProd Create (@RequestBody LivraisonProd X)
     {
-        return ClientService.AddClient(X);
+        return LivProdService.AddLivProd(X);
     }
-	 @GetMapping("/getIdClient/{id}")
+	 @GetMapping("/getIdLivProd/{id}")
 	 @ResponseBody
-	 public Optional<Client> getClientById(@PathVariable(value = "id") long Id)
+	 public Optional<LivraisonProd> getLivProdById(@PathVariable(value = "id") long Id)
 	         
 	 {
-	     return ClientService.getClientById(Id);
+	     return LivProdService.getLivraisonById(Id);
 	 }
 	    @CrossOrigin("*")
-	    @DeleteMapping(value = "/DeleteClient/{idR}")
+	    @DeleteMapping(value = "/DeleteLivProd/{idR}")
 	    @ResponseBody
 	    public void Remove (@PathVariable long idR)
 	    {
-	        ClientService.DeleteClient(idR);
+	        LivProdService.DeleteLivraisonProd(idR);
 	    }
 }

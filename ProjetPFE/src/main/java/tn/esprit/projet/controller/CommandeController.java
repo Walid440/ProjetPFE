@@ -64,7 +64,7 @@ public class CommandeController {
 	     return CommandetService.getCommandeById(Id);
 	 }
 	    @CrossOrigin("*")
-	    @DeleteMapping(value = "/DeleteClt/{idR}")
+	    @DeleteMapping(value = "/DeleteCommande/{idR}")
 	    @ResponseBody
 	    public void Remove (@PathVariable long idR)
 	    {

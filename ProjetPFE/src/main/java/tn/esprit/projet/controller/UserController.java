@@ -18,54 +18,56 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.projet.entites.Client;
+import tn.esprit.projet.entites.User;
 import tn.esprit.projet.services.InterClient;
+import tn.esprit.projet.services.InterUser;
 
  
 @RestController
 @CrossOrigin("*")
-public class ClientController {
+public class UserController {
   /*  @Autowired
     private JavaMailSender javaMailSender;*/
     @Autowired
-    private InterClient ClientService;
+    private InterUser UserService;
    
     
-    @PutMapping(value = "/UpdateClient/{idF}")
+    @PutMapping(value = "/UpdateUser/{idF}")
     @ResponseBody
-    public Client Update (@RequestBody Client R, @PathVariable Long idF)
+    public User Update (@RequestBody User R, @PathVariable Long idF)
     {//ReservationService.UpdateEvent(10);
     
-        return ClientService.UpdateClient(R, idF) ;
+        return UserService.UpdateUser(R, idF) ;
     }
     
     
-	@RequestMapping("/AllClient")
+	@RequestMapping("/AllUser")
 	@ResponseBody
-	public  List<Client> getAllClient()
+	public  List<User> getAllClient()
 	{
 		   
-    	List<Client> client=ClientService.getAll();
-		return   client ;	
+    	List<User> user=UserService.getAll();
+		return   user ;	
 	}
 	@CrossOrigin("http://localhost:8090")
-    @PostMapping(value = "/CreateClient")
+    @PostMapping(value = "/CreateUser")
     @ResponseBody
-    public Client Create (@RequestBody Client X)
+    public User Create (@RequestBody User X)
     {
-        return ClientService.AddClient(X);
+        return UserService.AddUser(X);
     }
-	 @GetMapping("/getIdClient/{id}")
+	 @GetMapping("/getIdUser/{id}")
 	 @ResponseBody
-	 public Optional<Client> getClientById(@PathVariable(value = "id") long Id)
+	 public Optional<User> getClientById(@PathVariable(value = "id") long Id)
 	         
 	 {
-	     return ClientService.getClientById(Id);
+	     return UserService.getUserById(Id);
 	 }
 	    @CrossOrigin("*")
-	    @DeleteMapping(value = "/DeleteClient/{idR}")
+	    @DeleteMapping(value = "/DeleteClt/{idR}")
 	    @ResponseBody
 	    public void Remove (@PathVariable long idR)
 	    {
-	        ClientService.DeleteClient(idR);
+	        UserService.DeleteUser(idR);
 	    }
 }

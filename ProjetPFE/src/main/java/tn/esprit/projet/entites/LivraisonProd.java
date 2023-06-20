@@ -36,5 +36,59 @@ public class LivraisonProd implements Serializable {
     @ManyToMany(mappedBy="LivProd",fetch=FetchType.LAZY)
     //@JsonIgnore
     private List<Commande> ListCom;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public List<Commande> getListCom() {
+		return ListCom;
+	}
+
+	public void setListCom(List<Commande> listCom) {
+		ListCom = listCom;
+	}
+
+	public LivraisonProd(long id, String adresse, String prenom, Date date, List<Commande> listCom) {
+		super();
+		this.id = id;
+		this.adresse = adresse;
+		this.prenom = prenom;
+		this.date = date;
+		ListCom = listCom;
+	}
+
+	public LivraisonProd() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
    
 }

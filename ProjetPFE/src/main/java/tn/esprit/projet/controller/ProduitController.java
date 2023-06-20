@@ -66,7 +66,7 @@ public class ProduitController {
 	     return ProdService.getProduitById(Id);
 	 }
 	    @CrossOrigin("*")
-	    @DeleteMapping(value = "/DeleteOffre/{idR}")
+	    @DeleteMapping(value = "/DeleteProd/{idR}")
 	    @ResponseBody
 	    public void Remove (@PathVariable long idR)
 	    {

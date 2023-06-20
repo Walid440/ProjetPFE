@@ -12,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
@@ -43,7 +44,8 @@ public class Offre implements Serializable {
 	@Nullable
 	@OneToOne
 	private Echange echange;
-	
+	  @ManyToOne
+	    private Admin admin;
 	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "offre")
 	  //  @JsonIgnore
 	    private List<Produit> listProd;
