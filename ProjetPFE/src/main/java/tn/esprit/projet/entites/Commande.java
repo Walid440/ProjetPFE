@@ -42,6 +42,51 @@ public class Commande implements Serializable {
   @ManyToMany(mappedBy="com",fetch=FetchType.LAZY)
     //@JsonIgnore
     private List<Paiement> paie;
+
+@Override
+public String toString() {
+	return "Commande [id=" + id + ", client=" + client + ", LivProd=" + LivProd + ", paie=" + paie + "]";
+}
+
+public long getId() {
+	return id;
+}
+
+public void setId(long id) {
+	this.id = id;
+}
+
+public Client getClient() {
+	return client;
+}
+
+public void setClient(Client client) {
+	this.client = client;
+}
+
+public List<LivraisonProd> getLivProd() {
+	return LivProd;
+}
+
+public void setLivProd(List<LivraisonProd> livProd) {
+	LivProd = livProd;
+}
+
+public Commande(long id, Client client, List<LivraisonProd> livProd, List<Paiement> paie) {
+	super();
+	this.id = id;
+	this.client = client;
+	LivProd = livProd;
+	this.paie = paie;
+}
+
+public List<Paiement> getPaie() {
+	return paie;
+}
+
+public void setPaie(List<Paiement> paie) {
+	this.paie = paie;
+}
     
   
     
