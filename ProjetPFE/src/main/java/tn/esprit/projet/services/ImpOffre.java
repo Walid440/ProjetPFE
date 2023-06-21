@@ -47,12 +47,13 @@ public class ImpOffre implements InterOffre {
 	    public Offre UpdateOffre(Offre R,Long Id) {
 	  
 	        Offre Res= OffRep.findById(Id).orElse(null);
-	    
+	    /*
 	       Res.setAdresse(R.getAdresse());
 	       Res.setNomOffre(R.getNomOffre());
 	       Res.setEchange(R.getEchange());
 	       Res.setLocation(R.getLocation());
 	       Res.setVente(R.getVente());
+	       */
 	       OffRep.save(Res);
 	        return null;
 	    }

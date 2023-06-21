@@ -47,11 +47,11 @@ public class ImpAdmin implements InterAdmin {
 	  
 	        Admin Res= AdminRep.findById(Id).orElse(null);
 	    
-	       Res.setNom(R.getNom());
+	     /*  Res.setNom(R.getNom());
 	       Res.setPrenom(R.getPrenom());
 	       Res.setAdresse(R.getAdresse());
 	       Res.setTelephone(R.getTelephone());
-	       Res.setEmail(R.getEmail());
+	       Res.setEmail(R.getEmail());*/
  	    	 
 	       AdminRep.save(Res);
 	        return null;

@@ -47,8 +47,8 @@ public class ImpLivProd implements InterLivProd {
 	  
 		  LivraisonProd Res= LivProdRep.findById(Id).orElse(null);
 	    
-	       Res.setAdresse(R.getAdresse());
-	       Res.setDate(R.getDate());
+	      /* Res.setAdresse(R.getAdresse());
+	       Res.setDate(R.getDate());*/
 	   
  	    	 
 	       LivProdRep.save(Res);

@@ -47,12 +47,12 @@ public class ImpProduit implements InterProduit {
 	  
 	        Produit Res= ProduitRep.findById(Id).orElse(null);
 	    
-	      Res.setAnnee(R.getAnnee());
+	      /*Res.setAnnee(R.getAnnee());
 	      Res.setNomProd(R.getNomProd());
  	      Res.setModele(R.getModele()); 
  	      Res.setMarque(R.getMarque());
  	      Res.setPrix(R.getPrix());
- 	    	
+ 	    	*/
 	       ProduitRep.save(Res);
 	        return null;
 	    }

@@ -48,9 +48,9 @@ public class ImpCommande implements InterCommande {
 	  
 	        Commande Res= ComRep.findById(Id).orElse(null);
 	    
-	       Res.setClient(R.getClient());
+	      /* Res.setClient(R.getClient());
 	       Res.setPaie((List<Paiement>) R.getClient());
- 	    	 Res.setLivProd(R.getLivProd());
+ 	       Res.setLivProd(R.getLivProd());*/
 	       ComRep.save(Res);
 	        return null;
 	    }

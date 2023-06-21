@@ -45,13 +45,13 @@ public class ImpUser implements InterUser {
 	  
 	        User Res= UserRep.findById(Id).orElse(null);
 	    
-	       Res.setAdmin(R.getAdmin());
+	      /* Res.setAdmin(R.getAdmin());
 	       Res.setAdresse(R.getAdresse());
 	       Res.setClient(R.getClient());
 	       Res.setEmail(R.getEmail());
 	       Res.setPassword(R.getPassword());
 	       Res.setTelephone(R.getTelephone());
- 	    	 
+ 	    	 */
 	       UserRep.save(Res);
 	        return null;
 	    }
