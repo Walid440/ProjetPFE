@@ -1,10 +1,17 @@
 package tn.esprit.projet.controller;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+ 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+ 
+import com.stripe.Stripe;
 
 import tn.esprit.projet.entites.Client;
 import tn.esprit.projet.entites.Offre;
@@ -45,11 +55,35 @@ public class PaiementController {
     	List<Paiement> Paie=PaiementService.getAll();
 		return   Paie ;	
 	}
-	@CrossOrigin("http://localhost:8090")
-    @PostMapping(value = "/CreatePaiement")
-    @ResponseBody
-    public Paiement Create (@RequestBody Paiement X)
-    {
-        return PaiementService.AddPaiement(X);
-    }
+	@GetMapping("/pay/{price}/{email}")
+	 @ResponseBody
+	 public void addpayement( @PathVariable(value = "price") String price,@PathVariable String email) {
+	 	Stripe.apiKey = "sk_test_51LXCNzGIua3O4ypHXGsX16FkyNXEXIG8f432zIzdN63tgBnvrPYeKdPvYYkONxPyjGmZRWGkfkskKNLvmjljmHeC00ExAgPV0v"; 
+	 	
+	 	
+			// `source` is obtained with Stripe.js; see https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+			Map<String, Object> params = new HashMap<>();
+			params.put("amount", price);
+			params.put("currency", "usd");
+			params.put("source", "tok_mastercard");
+			params.put("description",email);
+
+			try {
+				com.stripe.model.Charge charge = com.stripe.model.Charge.create(params);
+			} catch (com.stripe.exception.StripeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		//	Company com = comrep.findById(id).get();
+	   //  c.setCompanies(com);
+	  
+	   // c.setContent(aes.decrypt(c.getContent()));
+	    
+	  
+		}  
+	   
+	
+	
+	
 }

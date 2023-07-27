@@ -28,6 +28,8 @@ public class Offre implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column 
+	private String photo;
 	@Column(length = 25)
 	private String nomOffre;
 	@Column(length = 50)
@@ -38,6 +40,22 @@ public class Offre implements Serializable {
 	@Nullable
 	@OneToOne
 	private Vente vente;
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+
 	@Nullable
 	@OneToOne
 	private Location location;
@@ -114,24 +132,28 @@ public class Offre implements Serializable {
 		this.listProd = listProd;
 	}
 
-	@Override
-	public String toString() {
-		return "Offre [id=" + id + ", nomOffre=" + nomOffre + ", dateOffre=" + dateOffre + ", adresse=" + adresse
-				+ ", vente=" + vente + ", location=" + location + ", echange=" + echange + ", listProd=" + listProd
-				+ "]";
-	}
-
-	public Offre(long id, String nomOffre, Date dateOffre, String adresse, Vente vente, Location location,
-			Echange echange, List<Produit> listProd) {
+	 
+ 
+	public Offre(long id, String photo, String nomOffre, Date dateOffre, String adresse, Vente vente, Location location,
+			Echange echange, Admin admin, List<Produit> listProd) {
 		super();
 		this.id = id;
+		this.photo = photo;
 		this.nomOffre = nomOffre;
 		this.dateOffre = dateOffre;
 		this.adresse = adresse;
 		this.vente = vente;
 		this.location = location;
 		this.echange = echange;
+		this.admin = admin;
 		this.listProd = listProd;
+	}
+
+	@Override
+	public String toString() {
+		return "Offre [id=" + id + ", photo=" + photo + ", nomOffre=" + nomOffre + ", dateOffre=" + dateOffre
+				+ ", adresse=" + adresse + ", vente=" + vente + ", location=" + location + ", echange=" + echange
+				+ ", admin=" + admin + ", listProd=" + listProd + "]";
 	}
 
 	public Offre() {

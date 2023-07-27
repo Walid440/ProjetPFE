@@ -32,14 +32,14 @@ public class Produit implements Serializable {
 	@Column(length = 25)
 	private String nomProd;
 	@Column(length = 50)
-	private String Marque;
+	private String marque;
 	@Column(length = 50)
-	private String Modele;
+	private String modele;
 	@Column(length = 100)
 	private String prix;
  
 	@Column(length = 100)
-	private int Annee;
+	private int annee;
 	
 	
 	  @ManyToMany
@@ -59,17 +59,18 @@ public class Produit implements Serializable {
 	public void setNomProd(String nomProd) {
 		this.nomProd = nomProd;
 	}
+	 
 	public String getMarque() {
-		return Marque;
+		return marque;
 	}
 	public void setMarque(String marque) {
-		Marque = marque;
+		this.marque = marque;
 	}
 	public String getModele() {
-		return Modele;
+		return modele;
 	}
 	public void setModele(String modele) {
-		Modele = modele;
+		this.modele = modele;
 	}
 	public String getPrix() {
 		return prix;
@@ -78,10 +79,10 @@ public class Produit implements Serializable {
 		this.prix = prix;
 	}
 	public int getAnnee() {
-		return Annee;
+		return annee;
 	}
 	public void setAnnee(int annee) {
-		Annee = annee;
+		this.annee = annee;
 	}
 	public List<Commande> getListCommand() {
 		return listCommand;
@@ -95,26 +96,17 @@ public class Produit implements Serializable {
 	public void setOffre(Offre offre) {
 		this.offre = offre;
 	}
+	
+	
+	
 	@Override
 	public String toString() {
-		return "Produit [id=" + id + ", nomProd=" + nomProd + ", Marque=" + Marque + ", Modele=" + Modele + ", prix="
-				+ prix + ", Annee=" + Annee + ", listCommand=" + listCommand + ", offre=" + offre + "]";
+		return "Produit [id=" + id + ", nomProd=" + nomProd + ", marque=" + marque + ", modele=" + modele + ", prix="
+				+ prix + ", annee=" + annee + ", listCommand=" + listCommand + ", offre=" + offre + "]";
 	}
 	public Produit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Produit(long id, String nomProd, String marque, String modele, String prix, int annee,
-			List<Commande> listCommand, Offre offre) {
-		super();
-		this.id = id;
-		this.nomProd = nomProd;
-		Marque = marque;
-		Modele = modele;
-		this.prix = prix;
-		Annee = annee;
-		this.listCommand = listCommand;
-		this.offre = offre;
-	}
-   
+ 
 }
