@@ -26,7 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 
  
 import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
 
+import jakarta.mail.MessagingException;
 import tn.esprit.projet.entites.Client;
 import tn.esprit.projet.entites.Offre;
 import tn.esprit.projet.entites.Paiement;
@@ -40,8 +43,8 @@ import tn.esprit.projet.services.InterProduit;
 @RestController
 @CrossOrigin("*")
 public class PaiementController {
-  /*  @Autowired
-    private JavaMailSender javaMailSender;*/
+  @Autowired
+    private JavaMailSender javaMailSender;
     @Autowired
     private InterPaiement PaiementService;
    
@@ -57,7 +60,7 @@ public class PaiementController {
 	}
 	@GetMapping("/pay/{price}/{email}")
 	 @ResponseBody
-	 public void addpayement( @PathVariable(value = "price") String price,@PathVariable String email) {
+	 public void addpayement( @PathVariable(value = "price") String price,@PathVariable String email)   {
 	 	Stripe.apiKey = "sk_test_51LXCNzGIua3O4ypHXGsX16FkyNXEXIG8f432zIzdN63tgBnvrPYeKdPvYYkONxPyjGmZRWGkfkskKNLvmjljmHeC00ExAgPV0v"; 
 	 	
 	 	
@@ -67,12 +70,38 @@ public class PaiementController {
 			params.put("currency", "usd");
 			params.put("source", "tok_mastercard");
 			params.put("description",email);
-
-			try {
-				com.stripe.model.Charge charge = com.stripe.model.Charge.create(params);
-			} catch (com.stripe.exception.StripeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+ jakarta.mail.internet.MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+				    MimeMessageHelper helper;
+				    
+				    
+				    
+				   
+			  
+				
+				try {
+	try {
+		Charge charge = Charge.create(params);
+	} catch (StripeException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+					
+						helper = new MimeMessageHelper(mimeMessage, true); 
+					helper.setSubject("Notif Payement+ QRcode");
+					    helper.setText("Payement de "+price+" effectué avec succés  Merci de n'est pas répondre au message ci-joint votre Qrcode ");
+					 helper.setTo(email);
+					 javaMailSender.send(mimeMessage);
+				 
+					}  catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						
+					}
+				   /* FileSystemResource file = new FileSystemResource(new File("./src/main/resources/QRCode.png"));
+				    helper.addAttachment("CoolImage.jpg", file);*/ 
+				  
+			
+				
+			 
 			}
 
 		//	Company com = comrep.findById(id).get();
@@ -81,7 +110,7 @@ public class PaiementController {
 	   // c.setContent(aes.decrypt(c.getContent()));
 	    
 	  
-		}  
+		
 	   
 	
 	

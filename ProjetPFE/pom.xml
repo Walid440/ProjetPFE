@@ -64,10 +64,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+ 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -75,7 +72,7 @@
 		 <dependency>
         <groupId>com.stripe</groupId>
         <artifactId>stripe-java</artifactId>
-        <version>20.0.0</version> <!-- Replace with the latest version -->
+        <version>22.28.0</version> <!-- Replace with the latest version -->
     </dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -87,6 +84,9 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	 
+  
+
 	</dependencies>
 
 	<build>
