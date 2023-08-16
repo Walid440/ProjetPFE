@@ -1,10 +1,14 @@
 package tn.esprit.projet.services;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+ 
 
 import tn.esprit.projet.entites.Client;
 import tn.esprit.projet.entites.Offre;
@@ -28,7 +32,29 @@ public class ImpOffre implements InterOffre {
 	@Override
 	public Offre AddOffre(Offre C) {
 		// TODO Auto-generated method stub
+		//C.setEchange(C.getEchange());
+		
+         
+
+		 
+		
+ 		if(C.getEchange()!=null)
+		{
+			C.setphoto2("echange.png");
+			
+		}
+		else if(C.getVente()!=null)
+		{
+			C.setphoto2("vente.png");
+			
+		}
+		else if(C.getLocation()!=null)
+		{
+			C.setphoto2("location.png");
+			
+		}
 		Offre offre=OffRep.save(C);
+
 		return offre;
 	}
 	  @Override
@@ -57,5 +83,10 @@ public class ImpOffre implements InterOffre {
 	       OffRep.save(Res);
 	        return null;
 	    }
-
+	  public List<Offre> findByEventDateTimeBetween(LocalDate dat,String type)
+		{
+			
+			return OffRep.findAllWithCreationDateTimeBefore(dat,type);
+		}
+ 
 }

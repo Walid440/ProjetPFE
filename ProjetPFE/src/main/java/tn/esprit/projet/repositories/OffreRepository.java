@@ -9,20 +9,22 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.LocalDateTime;
- 
+
+import java.time.LocalDate;
+  
 import java.util.List;
 
 @Repository
 public interface OffreRepository extends JpaRepository<Offre, Long> {
 
-   /* @Transactional
-    @Modifying
-    @Query("UPDATE Ferry SET isDeleted = 1 WHERE idFerry = :id")
-  void DeleteFerry(Long id); 
+  
 	@Transactional
-    @Query("select a from Ferry a  where a.departureDate >=:creationDateDebut  and  a.departureDate <= :creationDateFin ")
-    
-    List<Ferry> findAllWithCreationDateTimeBefore( @Param("creationDateDebut") LocalDateTime creationDate,@Param("creationDateFin") LocalDateTime creationDate2);
- */
+   	@Query(value="select * from offre f where  f.date_Offre >=:dateOffre  and type=:type ", nativeQuery=true)
+	 
+    List<Offre> findAllWithCreationDateTimeBefore( @Param("dateOffre") LocalDate dateOffre,@Param("type") String type);
+ 
+	
+	
+
+ 
 }
