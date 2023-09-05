@@ -47,10 +47,10 @@ public class OffreController {
     
     
     @CrossOrigin("http://localhost:8090")
-    @GetMapping("/search/{dat}/{type}" )
+    @GetMapping("/search/{dat}/{type}/{ville}" )
     @ResponseBody
 
-	public List<Offre> searchEvents(@PathVariable String  dat,@PathVariable String  type) 
+	public List<Offre> searchEvents(@PathVariable String  dat,@PathVariable String  type,@PathVariable String ville) 
 	{	
 		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		 
@@ -60,7 +60,7 @@ public class OffreController {
 			 
 			 
 				LocalDate start1 = LocalDate.parse(startDateTime, formatter);
- 				List<Offre> calendarEvents = OffreService.findByEventDateTimeBetween(start1,type);
+ 				List<Offre> calendarEvents = OffreService.findByEventDateTimeBetween(start1,type,ville);
  				return calendarEvents;
 	}
 	

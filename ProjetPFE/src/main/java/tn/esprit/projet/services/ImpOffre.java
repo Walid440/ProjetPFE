@@ -83,10 +83,10 @@ public class ImpOffre implements InterOffre {
 	       OffRep.save(Res);
 	        return null;
 	    }
-	  public List<Offre> findByEventDateTimeBetween(LocalDate dat,String type)
+	  public List<Offre> findByEventDateTimeBetween(LocalDate dat,String type,String ville)
 		{
 			
-			return OffRep.findAllWithCreationDateTimeBefore(dat,type);
+			return OffRep.findAllWithCreationDateTimeBefore(dat,type,ville);
 		}
  
 }

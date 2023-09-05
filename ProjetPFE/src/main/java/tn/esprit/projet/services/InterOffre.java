@@ -21,7 +21,6 @@ public interface InterOffre  {
 	void DeleteOffre(Long id);
 
 	Offre UpdateOffre(Offre R, Long Id);
-	  public List<Offre> findByEventDateTimeBetween(LocalDate dat,String type);
- 
+	 public List<Offre> findByEventDateTimeBetween(LocalDate dat,String type,String ville); 
 	 
 }

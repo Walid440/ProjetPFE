@@ -19,9 +19,9 @@ public interface OffreRepository extends JpaRepository<Offre, Long> {
 
   
 	@Transactional
-   	@Query(value="select * from offre f where  f.date_Offre >=:dateOffre  and type=:type ", nativeQuery=true)
+   	@Query(value="select * from offre f where  f.date_Offre >=:dateOffre  and type=:type and ville=:ville ", nativeQuery=true)
 	 
-    List<Offre> findAllWithCreationDateTimeBefore( @Param("dateOffre") LocalDate dateOffre,@Param("type") String type);
+    List<Offre> findAllWithCreationDateTimeBefore( @Param("dateOffre") LocalDate dateOffre,@Param("type") String type,@Param("ville") String ville);
  
 	
 	

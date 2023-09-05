@@ -46,7 +46,6 @@ public class Offre implements Serializable {
 	
 
 	@Nullable
-	 
 	@OneToOne( cascade = CascadeType.ALL)
     private Echange echange;
 	

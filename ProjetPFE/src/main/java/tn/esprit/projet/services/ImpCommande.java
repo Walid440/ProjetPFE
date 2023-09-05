@@ -1,5 +1,7 @@
 package tn.esprit.projet.services;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,11 +50,23 @@ public class ImpCommande implements InterCommande {
 	  
 	        Commande Res= ComRep.findById(Id).orElse(null);
 	    
-	      /* Res.setClient(R.getClient());
+	       Res.setClient(R.getClient());
 	       Res.setPaie((List<Paiement>) R.getClient());
- 	       Res.setLivProd(R.getLivProd());*/
-	       ComRep.save(Res);
-	        return null;
+ 	       Res.setLivProd(R.getLivProd());
+ 	       Res.setDateDebut(R.getDateDebut());
+ 	       Res.setDateFin(R.getDateFin());
+ 	       Res.setPrix(R.getPrix());
+ 	      Res.setStatus(R.getStatus());
+	      
+	        return  ComRep.save(Res);
 	    }
+
+
+	 
+	@Override
+	public List<Commande> findByEventDateTimeBetween(LocalDateTime start, LocalDateTime end) {
+	 
+		 return ComRep.findAllWithCreationDateTimeBefore(start,end);
+	}
 
 }

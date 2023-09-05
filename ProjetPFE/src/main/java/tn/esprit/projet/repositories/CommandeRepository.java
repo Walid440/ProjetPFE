@@ -8,20 +8,23 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.LocalDateTime;
+
  
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface CommandeRepository extends JpaRepository<Commande, Long> {
 
-   /* @Transactional
+  /*@Transactional
     @Modifying
     @Query("UPDATE Ferry SET isDeleted = 1 WHERE idFerry = :id")
   void DeleteFerry(Long id); 
+	 */
 	@Transactional
-    @Query("select a from Ferry a  where a.departureDate >=:creationDateDebut  and  a.departureDate <= :creationDateFin ")
+    @Query("select a from Commande a  where (a.dateDebut >=:creationDateDebut  and  a.dateDebut <= :creationDateFin)")
     
-    List<Ferry> findAllWithCreationDateTimeBefore( @Param("creationDateDebut") LocalDateTime creationDate,@Param("creationDateFin") LocalDateTime creationDate2);
- */
+    List<Commande> findAllWithCreationDateTimeBefore( @Param("creationDateDebut") LocalDateTime creationDateDebut,@Param("creationDateFin") LocalDateTime creationDateFin);
+
 }
