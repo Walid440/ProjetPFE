@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import tn.esprit.projet.entites.Vente;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
@@ -36,6 +38,7 @@ public class Offre implements Serializable {
 	@Column(length = 25)
 	private String nomOffre;
 	@Column(length = 50)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateOffre;
 	@Column(length = 100)
 	private String adresse;
@@ -44,7 +47,6 @@ public class Offre implements Serializable {
 	@OneToOne(cascade=CascadeType.ALL)
 	private Vente vente;
 	
-
 	@Nullable
 	@OneToOne( cascade = CascadeType.ALL)
     private Echange echange;
@@ -58,7 +60,7 @@ public class Offre implements Serializable {
 	  @ManyToOne
 	    private Admin admin;
 	  @OneToMany(cascade = CascadeType.ALL, mappedBy = "offre")
-	  //  @JsonIgnore
+	 // @JsonIgnore
 	    private List<Produit> listProd;
 
 	public long getId() {

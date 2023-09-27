@@ -43,7 +43,8 @@ public class Location implements Serializable {
 	private String Lieu;
     @Column(length = 50)
 	private String prix;
-    
+    private Integer km_debut ;
+    private Integer km_fin ;
     
     private Status statusLoc;
     @OneToOne
@@ -130,8 +131,41 @@ public class Location implements Serializable {
 	}
 
 
+	public Integer getKm_debut() {
+		return km_debut;
+	}
+
+
+	public void setKm_debut(Integer km_debut) {
+		this.km_debut = km_debut;
+	}
+
+
+	public Integer getKm_fin() {
+		return km_fin;
+	}
+
+
+	public void setKm_fin(Integer km_fin) {
+		this.km_fin = km_fin;
+	}
+
+
+	public Offre getOffre() {
+		return offre;
+	}
+
+
+	public void setOffre(Offre offre) {
+		this.offre = offre;
+	}
+
+
+ 
+
+
 	public Location(long idLoc, Date dateDebut, Date dateFin, Date heureDebut, Date heureFin, String lieu, String prix,
-			Status statusLoc) {
+			Integer km_debut, Integer km_fin, Status statusLoc, Offre offre) {
 		super();
 		this.idLoc = idLoc;
 		DateDebut = dateDebut;
@@ -140,13 +174,24 @@ public class Location implements Serializable {
 		HeureFin = heureFin;
 		Lieu = lieu;
 		this.prix = prix;
+		this.km_debut = km_debut;
+		this.km_fin = km_fin;
 		this.statusLoc = statusLoc;
+		this.offre = offre;
 	}
 
 
 	public Location() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+
+	@Override
+	public String toString() {
+		return "Location [idLoc=" + idLoc + ", DateDebut=" + DateDebut + ", DateFin=" + DateFin + ", HeureDebut="
+				+ HeureDebut + ", HeureFin=" + HeureFin + ", Lieu=" + Lieu + ", prix=" + prix + ", km_debut=" + km_debut
+				+ ", km_fin=" + km_fin + ", statusLoc=" + statusLoc + ", offre=" + offre + "]";
 	}
 	 
 

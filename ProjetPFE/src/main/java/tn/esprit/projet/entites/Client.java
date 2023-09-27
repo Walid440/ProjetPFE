@@ -26,6 +26,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "Client")
  @Data
+
+
+ @JsonInclude(value= JsonInclude.Include.NON_NULL)
+ @JsonIgnoreProperties(ignoreUnknown=true)
+ @NoArgsConstructor
+ @AllArgsConstructor
 public class Client implements Serializable {
 
 	@Id

@@ -1,5 +1,7 @@
 package tn.esprit.projet.services;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +30,13 @@ public class ImpComment implements InterComment {
 		Comment com=CommentRep.save(C);
 		return com;
 	}
-	 
+	public  List<String>  getCountRating(LocalDate idR)
+	{
+		 
+	  
+		return CommentRep.CountRating(idR);
+		
+	}
 	
 
 }

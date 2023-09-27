@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
  
 import java.util.List;
@@ -25,4 +27,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     
     List<Ferry> findAllWithCreationDateTimeBefore( @Param("creationDateDebut") LocalDateTime creationDate,@Param("creationDateFin") LocalDateTime creationDate2);
  */
+	
+	@Query(value = "SELECT SUM(CASE WHEN Rating = 'TresUnsatisfait' THEN 1 ELSE 0 END), " +
+            "SUM(CASE WHEN Rating = 'Neutre' THEN 1 ELSE 0 END), " +
+            "SUM(CASE WHEN Rating = 'Satisfait' THEN 1 ELSE 0 END), " +
+            "SUM(CASE WHEN Rating = 'TresSatisfait' THEN 1 ELSE 0 END) " +
+            "FROM comment f WHERE f.date_jour = :date", nativeQuery = true)
+	 
+List<String>CountRating (@Param("date")LocalDate date);
 }

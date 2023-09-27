@@ -37,7 +37,7 @@ public class CommandeController {
     private JavaMailSender javaMailSender;*/
     @Autowired
     private InterCommande ComService;
-   
+  
     
     @PutMapping(value = "/UpdateCommande/{idF}")
     @ResponseBody
@@ -48,20 +48,34 @@ public class CommandeController {
     }
     
     @CrossOrigin("http://localhost:8090")
-	@RequestMapping("/AllCommande")
+	@RequestMapping("/allCom")
 	@ResponseBody
 	public  List<Commande> getAllCommande()
 	{
 		   
-    	List<Commande> client=ComService.getAll();
+    	List<Commande> client=ComService.getAllCom();
 		return   client ;	
 	}
+     
 	@CrossOrigin("http://localhost:8090")
-    @PostMapping(value = "/CreateCommande")
+    @PostMapping(value = "/CreateCommande/{start}/{end}/{idF}")
     @ResponseBody
-    public Commande Create (@RequestBody Commande X)
+    public Commande Create (@RequestBody Commande X, @PathVariable(value = "start") String  start,@PathVariable(value = "end") String  end,@PathVariable Long idF)
     {
-        return ComService.AddCommande(X);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		 
+		String startDateTime = start;
+		String endDateTime = end;
+	  
+	
+		 
+		 
+			LocalDateTime start1 = LocalDateTime.parse(startDateTime, formatter);
+			LocalDateTime end1 = LocalDateTime.parse(endDateTime, formatter);
+
+        return ComService.AddCommande( X,idF,start1,end1);
+         
+         
     }
 	 @GetMapping("/getIdCommande/{id}")
 	 @ResponseBody
@@ -79,12 +93,12 @@ public class CommandeController {
 	    }
 	    
 	    @CrossOrigin("http://localhost:8090")
-	    @GetMapping("/search/commande" )
+	    @GetMapping("/search/commande/{start}/{end}" )
 	    @ResponseBody
 
-		public List<Commande> searchEvents(@RequestParam String  start,@RequestParam String  end) 
+		public List<Commande> searchEvents(@PathVariable("start")  String  start,@PathVariable("end")  String  end) 
 		{	
-			 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 			 
 				String startDateTime = start;
 				String endDateTime = end;

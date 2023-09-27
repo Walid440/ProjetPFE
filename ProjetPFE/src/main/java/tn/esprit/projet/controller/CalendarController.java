@@ -17,59 +17,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.projet.entites.Calendar;
 import tn.esprit.projet.entites.Client;
-import tn.esprit.projet.entites.Offre;
-import tn.esprit.projet.entites.Produit;
+import tn.esprit.projet.entites.Commande;
+import tn.esprit.projet.services.CalendarService;
 import tn.esprit.projet.services.InterClient;
-import tn.esprit.projet.services.InterOffre;
-import tn.esprit.projet.services.InterProduit;
 
  
 @RestController
 @CrossOrigin("*")
-public class ProduitController {
+public class CalendarController {
   /*  @Autowired
     private JavaMailSender javaMailSender;*/
     @Autowired
-    private InterProduit ProdService;
+    private CalendarService CalServ;
    
-    @CrossOrigin("http://localhost:8090")
-    @PutMapping(value = "/UpdateProduit")
-    @ResponseBody
-    public Produit Update (@RequestBody Produit R)
-    {//ReservationService.UpdateEvent(10);
     
-        return ProdService.UpdateProduit(R) ;
-    }
+   
     
-    @CrossOrigin("http://localhost:8090")
-	@RequestMapping("/AllProd")
-	@ResponseBody
-	public  List<Produit> getAllProd()
-	{
-		   
-    	List<Produit> offre=ProdService.getAll();
-		return   offre ;	
-	}
+    
+	 
 	@CrossOrigin("http://localhost:8090")
-    @PostMapping(value = "/CreateProd")
+    @PostMapping(value = "/CreateCalendar")
     @ResponseBody
-    public Produit Create (@RequestBody Produit X)
+    public Calendar Create (@RequestBody Calendar X)
     {
-        return ProdService.AddProduit(X);
+        return CalServ.AddCalendar(X);
     }
-	 @GetMapping("/getIdProd/{id}")
+	
+	@CrossOrigin("http://localhost:8090")
+	 @GetMapping("/AllCalendar")
 	 @ResponseBody
-	 public Optional<Produit> getProdById(@PathVariable(value = "id") long Id)
+	 public List<Calendar> getAll()
 	         
-	 {
-	     return ProdService.getProduitById(Id);
+	 {    	List<Calendar> cal=CalServ.getAllCal();
+
+	     return cal;
 	 }
-	    @CrossOrigin("*")
-	    @DeleteMapping(value = "/DeleteProd/{idR}")
-	    @ResponseBody
-	    public void Remove (@PathVariable long idR)
-	    {
-	    	ProdService.DeleteProduit(idR);
-	    }
+	    
 }

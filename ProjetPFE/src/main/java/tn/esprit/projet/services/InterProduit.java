@@ -17,7 +17,7 @@ public interface InterProduit  {
 
 	void DeleteProduit(Long id);
 
-	Produit UpdateProduit(Produit R, Long Id);
+	Produit UpdateProduit(Produit R);
 	
 	
 	

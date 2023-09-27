@@ -43,18 +43,18 @@ public class ImpProduit implements InterProduit {
 	        ProduitRep.deleteById(id);
 	    }
 	  @Override
-	    public Produit UpdateProduit(Produit R,Long Id) {
+	    public Produit UpdateProduit(Produit R) {
 	  
-	        Produit Res= ProduitRep.findById(Id).orElse(null);
+	        //Produit Res= ProduitRep.findById(Id).orElse(null);
 	    
-	      /*Res.setAnnee(R.getAnnee());
+	     /* Res.setAnnee(R.getAnnee());
 	      Res.setNomProd(R.getNomProd());
  	      Res.setModele(R.getModele()); 
  	      Res.setMarque(R.getMarque());
  	      Res.setPrix(R.getPrix());
- 	    	*/
-	       ProduitRep.save(Res);
-	        return null;
+ 	    	 */
+	       
+	        return ProduitRep.save(R);
 	    }
 
 }

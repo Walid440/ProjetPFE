@@ -1,6 +1,10 @@
 package tn.esprit.projet.controller;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +70,22 @@ public class CommentController {
 	        return CommentService.AddComment(X);
 	    }
 		  
-	
+
+	    @GetMapping("/stat/{date}")
+	    
+	    @ResponseBody
+	    public  List<String>  stat(@PathVariable(value = "date") String date){
+	    	
+	    	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			 
+				String startDateTime = date;
+				
+               LocalDate dat = LocalDate.parse(startDateTime, formatter);
+	 				
+ 	        
+	       
+	        return  CommentService.getCountRating(dat);
+	    }
 	
 	
 }
